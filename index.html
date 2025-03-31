@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recitativos Bíblicos CCB - Visualização Pública</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #67458b;
+            --secondary: #9362C6;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --white: #ffffff;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(103, 69, 139, 0.9), rgba(103, 69, 139, 0.9)), 
+                        url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--white);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 4rem 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Recitativos Preview */
+        .recitativos-preview {
+            background-color: var(--white);
+        }
+        
+        .recitativo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .recitativo-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .recitativo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .recitativo-img {
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .recitativo-info {
+            padding: 1.5rem;
+        }
+        
+        .recitativo-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .recitativo-meta {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <i class="fas fa-book-bible"></i>
+                <span>Recitativos CCB</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">Sobre</a>
+                <a href="#recitativos">Recitativos</a>
+                <a href="#contact">Contato</a>
+                <a href="login.php" class="btn">Acesso Restrito</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Recitativos Bíblicos Digitais</h1>
+            <p>Uma plataforma moderna para criação e compartilhamento de recitativos bíblicos na Congregação Cristã no Brasil</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="#recitativos" class="btn btn-primary">Ver Exemplos</a>
+                <a href="#about" class="btn">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre o Projeto</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Inovação</h3>
+                    <p>Modernização do processo de criação de recitativos bíblicos, substituindo os métodos manuais tradicionais por uma solução digital eficiente.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Eficiência</h3>
+                    <p>Redução significativa do tempo necessário para preparar os recitativos, de horas para apenas alguns minutos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Colaboração</h3>
+                    <p>Permite que irmãos responsáveis trabalhem em conjunto na preparação dos recitativos, mesmo à distância.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recitativos Preview -->
+    <section id="recitativos" class="section recitativos-preview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Exemplos de Recitativos</h2>
+            </div>
+            <div class="recitativo-grid">
+                <!-- Exemplo 1 -->
+                <div class="recitativo-card">
+                    <div class="recitativo-img" style="background-image: url('https://images.unsplash.com/photo-1544830285-5ca1fd0a8a42?ixlib=rb-4.0.3');"></div>
+                    <div class="recitativo-info">
+                        <h3>Salmo 23</h3>
+                        <div class="recitativo-meta">Leitor: Irmão João Silva</div>
+                        <p>O Senhor é meu pastor, nada me faltará...</p>
+                        <a href="#" class="btn" style="margin-top: 0.5rem; display: inline-block;">Visualizar</a>
+                    </div>
+                </div>
+                
+                <!-- Exemplo 2 -->
+                <div class="recitativo-card">
+                    <div class="recitativo-img" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3');"></div>
+                    <div class="recitativo-info">
+                        <h3>João 3:16</h3>
+                        <div class="recitativo-meta">Leitora: Irmã Maria Oliveira</div>
+                        <p>Porque Deus amou o mundo de tal maneira...</p>
+                        <a href="#" class="btn" style="margin-top: 0.5rem; display: inline-block;">Visualizar</a>
+                    </div>
+                </div>
+                
+                <!-- Exemplo 3 -->
+                <div class="recitativo-card">
+                    <div class="recitativo-img" style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3');"></div>
+                    <div class="recitativo-info">
+                        <h3>Romanos 8:28</h3>
+                        <div class="recitativo-meta">Leitor: Irmão Pedro Santos</div>
+                        <p>Sabemos que todas as coisas cooperam para o bem...</p>
+                        <a href="#" class="btn" style="margin-top: 0.5rem; display: inline-block;">Visualizar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+            </div>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p>Para mais informações sobre o projeto ou para solicitar acesso ao sistema, entre em contato conosco.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="mailto:contato@recitativosccb.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Enviar Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Recitativos CCB</div>
+            <div class="footer-links">
+                <a href="#about">Sobre</a>
+                <a href="#recitativos">Recitativos</a>
+                <a href="#contact">Contato</a>
+                <a href="login.php">Acesso Restrito</a>
+                <a href="politica-privacidade.html">Política de Privacidade</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Recitativos CCB. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

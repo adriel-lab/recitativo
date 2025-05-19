@@ -69,6 +69,7 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,14 +81,16 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background-color: white;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .user-header {
             display: flex;
             justify-content: space-between;
@@ -96,59 +99,73 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
+
         .user-info {
             color: #67458b;
             font-weight: bold;
         }
+
         .header-actions {
             display: flex;
             gap: 10px;
         }
+
         h1 {
             text-align: center;
             color: #333;
             margin-bottom: 30px;
         }
+
         .search-container {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
         }
+
         .search-box {
             display: flex;
             gap: 10px;
         }
+
         .search-box input {
             padding: 8px 12px;
             width: 300px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
         .table-responsive {
             overflow-x: auto;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         th {
             background-color: #67458b;
             color: white;
             position: sticky;
             top: 0;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         tr:hover {
             background-color: #f1f1f1;
         }
+
         .badge {
             display: inline-block;
             padding: 3px 8px;
@@ -156,10 +173,12 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
             font-size: 12px;
             font-weight: bold;
         }
+
         .badge-primary {
             background-color: #e9e9ff;
             color: #4a4a8a;
         }
+
         .action-btn {
             display: inline-flex;
             align-items: center;
@@ -171,10 +190,12 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
             background-color: #67458b;
             margin: 0 2px;
         }
+
         .action-btn:hover {
             background-color: #9362C6;
             color: white;
         }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -185,19 +206,24 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
             color: white;
             text-decoration: none;
         }
+
         .btn:hover {
             background-color: #9362C6;
         }
+
         .btn i {
             font-size: 14px;
         }
+
         .pagination {
             display: flex;
             justify-content: center;
             margin-top: 20px;
             gap: 5px;
         }
-        .pagination a, .pagination span {
+
+        .pagination a,
+        .pagination span {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -206,29 +232,45 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
             border-radius: 4px;
             border: 1px solid #ddd;
         }
+
         .pagination a:hover {
             background-color: #67458b;
             color: white;
             border-color: #67458b;
         }
+
         .current-page {
             background-color: #67458b;
             color: white;
             border-color: #67458b;
         }
+
         .empty-state {
             text-align: center;
             padding: 40px;
             color: #666;
         }
+
         .empty-state i {
             font-size: 50px;
             color: #ddd;
             margin-bottom: 15px;
         }
+
+
+        .badge-verso {
+            background-color: #e9f7ef;
+            color: #28a745;
+        }
+
+        .badge-normal {
+            background-color: #e9e9ff;
+            color: #4a4a8a;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Cabeçalho -->
@@ -250,8 +292,8 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
         <div class="search-container">
             <div class="search-box">
                 <form method="get" action="lista_recitativos.php" class="search-form">
-                    <input type="text" name="busca" placeholder="Pesquisar leitor ou livro..." 
-                           value="<?= htmlspecialchars($busca) ?>">
+                    <input type="text" name="busca" placeholder="Pesquisar leitor ou livro..."
+                        value="<?= htmlspecialchars($busca) ?>">
                     <button type="submit" class="btn"><i class="fas fa-search"></i></button>
                 </form>
             </div>
@@ -267,7 +309,8 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Leitor</th>
+                            <th>Tipo</th>
+                           
                             <th>Referência</th>
                             <th>Data</th>
                             <th>Páginas</th>
@@ -277,26 +320,38 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($recitativos as $recitativo): 
+                        <?php foreach ($recitativos as $recitativo):
                             $arquivos = explode(',', $recitativo['arquivo_gerado']);
                             $dataFormatada = date('d/m/Y', strtotime($recitativo['data_recitativo']));
                             $dataCriacao = date('d/m/Y H:i', strtotime($recitativo['data_geracao']));
-                            $podeEditar = ($_SESSION['nivel_acesso'] === 'admin' || 
-                                         ($_SESSION['nivel_acesso'] === 'editor' && $_SESSION['usuario_id'] == $recitativo['usuario_id']));
+                            $podeEditar = ($_SESSION['nivel_acesso'] === 'admin' ||
+                                ($_SESSION['nivel_acesso'] === 'editor' && $_SESSION['usuario_id'] == $recitativo['usuario_id']));
+                            $tipoRecitativo = $recitativo['tipo'] == 1 ? 'Verso' : 'Frente';
                         ?>
                             <tr>
                                 <td><?= $recitativo['id'] ?></td>
-                                <td><?= htmlspecialchars($recitativo['nome_leitor']) ?></td>
-                                <td><?= htmlspecialchars($recitativo['livro']) ?> <?= $recitativo['capitulo'] ?>:<?= $recitativo['verso_inicio'] ?>-<?= $recitativo['verso_fim'] ?></td>
+                                <td>
+                                    <span class="badge <?= $recitativo['tipo'] == 1 ? 'badge-verso' : 'badge-normal' ?>">
+                                        <?= $tipoRecitativo ?>
+                                    </span>
+                                </td>
+                              
+                                <td>
+                                    <?php if ($recitativo['tipo'] == 1): ?>
+                                        <?= htmlspecialchars($recitativo['livro']) ?> <?= $recitativo['capitulo'] ?>
+                                    <?php else: ?>
+                                        <?= htmlspecialchars($recitativo['livro']) ?> <?= $recitativo['capitulo'] ?>:<?= $recitativo['verso_inicio'] ?>-<?= $recitativo['verso_fim'] ?>
+                                    <?php endif; ?>
+                                </td>
                                 <td><?= $dataFormatada ?></td>
                                 <td><span class="badge badge-primary"><?= count($arquivos) ?></span></td>
                                 <td><?= htmlspecialchars($recitativo['usuario_nome']) ?></td>
                                 <td><?= $dataCriacao ?></td>
                                 <td>
-                                    <a href="visualizar.php?id=<?= $recitativo['id'] ?>" class="action-btn" title="Visualizar">
+                                    <a href="visualizar.php?id=<?= $recitativo['id'] ?>&tipo=<?= $recitativo['tipo'] ?>" class="action-btn" title="Visualizar">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="baixar_todos.php?id=<?= $recitativo['id'] ?>" class="btn"><i class="fas fa-download"></i> Baixar Todas</a>
+                                    <a href="baixar_todos.php?id=<?= $recitativo['id'] ?>&tipo=<?= $recitativo['tipo'] ?>" class="btn"><i class="fas fa-download"></i> Baixar Todas</a>
                                     <?php if ($podeEditar): ?>
                                         <a href="editar_recitativo.php?id=<?= $recitativo['id'] ?>" class="action-btn" title="Editar">
                                             <i class="fas fa-edit"></i>
@@ -325,10 +380,10 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
                     <a href="?pagina=<?= $pagina - 1 ?><?= $busca ? '&busca=' . urlencode($busca) : '' ?>"><i class="fas fa-angle-left"></i></a>
                 <?php endif; ?>
 
-                <?php 
+                <?php
                 $inicio = max(1, $pagina - 2);
                 $fim = min($total_paginas, $pagina + 2);
-                
+
                 for ($i = $inicio; $i <= $fim; $i++): ?>
                     <?php if ($i == $pagina): ?>
                         <span class="current-page"><?= $i ?></span>
@@ -345,6 +400,7 @@ registrarLog($_SESSION['usuario_id'], 'ACESSO_LISTA', 'Acessou lista de recitati
         <?php endif; ?>
     </div>
 </body>
+
 </html>
 <?php
 $conexao->close();

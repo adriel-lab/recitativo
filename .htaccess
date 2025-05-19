@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirecionar URLs amigáveis
+RewriteRule ^biblia/([a-zA-Z-]+)/([0-9]+)/?$ consulta.php?livro=$1&capitulo=$2 [L,QSA]
+RewriteRule ^biblia/([a-zA-Z-]+)/([0-9]+)/versao/([0-9]+)/?$ consulta.php?livro=$1&capitulo=$2&versao=$3 [L,QSA]

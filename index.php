@@ -296,7 +296,7 @@ function temPermissao($nivelRequerido) {
                     <tr>
                         <td><i class="fas fa-plus-circle"></i> Novo Recitativo (Traseiro)</td>
                         <td>Crie um novo recitativo personalizado a parte traseira</td>
-                        <td><a href="novo_traseiro.php">Acessar <i class="fas fa-arrow-right"></i></a></td>
+                        <td><a href="novo_verso.php">Acessar <i class="fas fa-arrow-right"></i></a></td>
                     </tr>
                     <tr>
                         <td><i class="fas fa-list"></i> Lista de Recitativos</td>
@@ -307,6 +307,11 @@ function temPermissao($nivelRequerido) {
                         <td><i class="fas fa-search"></i> Consultar Recitativo</td>
                         <td>Busque um recitativo específico por código ou nome</td>
                         <td><a href="consulta.php">Acessar <i class="fas fa-arrow-right"></i></a></td>
+                    </tr>
+                       <tr>
+                        <td><i class="fas fa-bible"></i> Biblia</td>
+                        <td>Busque uma passagem direto na Biblia</td>
+                        <td><a href="biblia">Acessar <i class="fas fa-arrow-right"></i></a></td>
                     </tr>
                     <tr>
                         <td><i class="fas fa-cog"></i> Configurações</td>
